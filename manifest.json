@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Snippet Paste",
+  "version": "1.1.0",
+  "description": "Store a large snippet and paste it anywhere with the /writ trigger.",
+  "permissions": ["storage", "tabs", "scripting", "unlimitedStorage"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["watermark.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Snippet Paste"
+  }
+}
